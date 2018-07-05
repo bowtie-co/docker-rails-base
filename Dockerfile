@@ -23,8 +23,8 @@ ADD https://deb.nodesource.com/setup_8.x /tmp/node.sh
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
       # Basic required packages for all rails images
       build-essential git vim gnupg2 \
-      # This is lib for PostgreSQL
-      libpq-dev && \
+      # This is lib for MySQL
+      default-libmysqlclient-dev && \
       # Install sops from downloaded .deb file
       dpkg -i /tmp/sops.deb && \
       # Install node (only installs 8.x apt repo & key)
