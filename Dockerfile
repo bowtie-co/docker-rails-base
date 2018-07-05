@@ -23,6 +23,8 @@ ADD https://deb.nodesource.com/setup_8.x /tmp/node.sh
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
       # Basic required packages for all rails images
       build-essential git vim gnupg2 \
+      # Install requirements for image processing (paperclip)
+      ghostscript imagemagick libmagic-dev graphviz \
       # This is lib for MySQL
       default-libmysqlclient-dev && \
       # Install sops from downloaded .deb file
