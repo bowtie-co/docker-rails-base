@@ -34,8 +34,6 @@ fi
 REQUIRED_ENV_VARS="
 DATABASE_HOST
 DATABASE_PORT
-REDIS_HOST
-REDIS_PORT
 "
 
 for v in $REQUIRED_ENV_VARS; do
@@ -46,7 +44,6 @@ for v in $REQUIRED_ENV_VARS; do
 done
 
 /scripts/wait-for-it.sh $DATABASE_HOST:$DATABASE_PORT -t 30
-/scripts/wait-for-it.sh $REDIS_HOST:$REDIS_PORT -t 30
 
 if [[ "$RAILS_ENV" == "development" ]]; then
   DOCKER_CMD=$(cat Dockerfile | grep CMD | awk '{ print $2 " " $3 " " $4 " " $5 " " $6 }')
