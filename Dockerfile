@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -qq -y --no-install-recommends \
       # Basic required packages for all rails images
       build-essential git vim gnupg2 \
       # Install requirements for image processing (paperclip)
-      ghostscript imagemagick libmagic-dev graphviz \
+      ghostscript libvips libvips-dev graphviz \
       # This is lib for PostgreSQL
       libpq-dev && \
       # Install sops from downloaded .deb file
