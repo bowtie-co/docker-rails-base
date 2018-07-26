@@ -15,20 +15,17 @@ ENV INSTALL_PATH /app
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
-# Download installers for sops and node 8.x
-ADD https://github.com/mozilla/sops/releases/download/3.0.5/sops_3.0.4_amd64.deb /tmp/sops.deb
+# Download installers for node 8.x
 ADD https://deb.nodesource.com/setup_8.x /tmp/node.sh
 
 # Run system package installations
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
       # Basic required packages for all rails images
-      build-essential git vim gnupg2 \
+      build-essential git curl gnupg2 \
       # Install requirements for image processing (paperclip)
-      ghostscript imagemagick libmagic-dev graphviz \
+      ghostscript imagemagick libmagic-dev \
       # This is lib for PostgreSQL
-      libpq-dev && \
-      # Install sops from downloaded .deb file
-      dpkg -i /tmp/sops.deb && \
+      libpq-dev file && \
       # Install node (only installs 8.x apt repo & key)
       cat /tmp/node.sh | bash && \
       # Run install again for nodejs (after running node.sh, this will install 8.x)
@@ -36,7 +33,6 @@ RUN apt-get update && apt-get install -qq -y --no-install-recommends \
       # Update bundler gem
       gem install bundler && \
       # Remove tmp install files
-      rm /tmp/sops.deb && \
       rm /tmp/node.sh
 
 COPY *.sh /scripts/
