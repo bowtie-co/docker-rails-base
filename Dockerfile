@@ -11,7 +11,7 @@ ENV EDITOR vim
 RUN mkdir -p /scripts
 
 # Use generic /app path for working directory
-ENV INSTALL_PATH /app
+ENV INSTALL_PATH /oygt
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
