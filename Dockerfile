@@ -52,4 +52,4 @@ COPY *.sh /scripts/
 
 ENTRYPOINT [ "/scripts/docker-entrypoint.sh" ]
 
-CMD jemalloc.sh bundle exec puma -C config/puma.rb
+CMD bundle exec puma -C config/puma.rb
